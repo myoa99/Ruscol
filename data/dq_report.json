@@ -1,0 +1,75 @@
+{
+  "overall_status": "WARNING",
+  "total_checks": 8,
+  "checks": [
+    {
+      "check": "check_not_empty",
+      "status": "PASS",
+      "message": "Таблица содержит записи",
+      "details": {
+        "row_count": 7
+      }
+    },
+    {
+      "check": "check_not_null",
+      "status": "PASS",
+      "message": "Пропуски в критических столбцах отсутствуют",
+      "details": {
+        "city_id": 0,
+        "date": 0
+      }
+    },
+    {
+      "check": "check_unique_key",
+      "status": "PASS",
+      "message": "Бизнес-ключ уникален",
+      "details": {
+        "duplicates": 0
+      }
+    },
+    {
+      "check": "check_date_format",
+      "status": "PASS",
+      "message": "Все записи в date являются валидными датами",
+      "details": {
+        "invalid_dates": 0
+      }
+    },
+    {
+      "check": "check_schema_contract",
+      "status": "WARNING",
+      "message": "Обнаружены нерасписанные в контракте колонки: ['country_code', 'rainy_hours']",
+      "details": {
+        "missing": [],
+        "extra": [
+          "country_code",
+          "rainy_hours"
+        ]
+      }
+    },
+    {
+      "check": "check_numeric_range_temp_mean",
+      "status": "PASS",
+      "message": "Все значения temp_mean входят в диапазон [-60.0, 60.0]",
+      "details": {
+        "invalid_count": 0
+      }
+    },
+    {
+      "check": "check_numeric_range_wind_speed_max",
+      "status": "PASS",
+      "message": "Все значения wind_speed_max входят в диапазон [0.0, 100.0]",
+      "details": {
+        "invalid_count": 0
+      }
+    },
+    {
+      "check": "check_numeric_range_precip_sum",
+      "status": "PASS",
+      "message": "Все значения precip_sum входят в диапазон [0.0, 500.0]",
+      "details": {
+        "invalid_count": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=weather_db
+    ports:
+      - "5434:5432"
+
+  weather_airflow:
+    image: apache/airflow:2.7.1
+    command: standalone
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://user:password@postgres:5432/weather_db
+      - _PIP_ADDITIONAL_REQUIREMENTS=pandas requests pyyaml numpy sqlalchemy psycopg2-binary matplotlib seaborn scikit-learn
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./src:/opt/airflow/src
+      - ./logs:/opt/airflow/logs
+      - ./data:/opt/airflow/data
+    depends_on:
+      - postgres
